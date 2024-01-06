@@ -16,14 +16,17 @@ import { CrearTicket } from "./CrearTicket"
 import { Cola } from "./Cola"
 import { Ingresar } from "./Ingresar"
 import { Escritorio } from "./Escritorio"
+import { UiContext } from "../context/UiContext"
 
 const { Sider, Content } = Layout
 
 export const RouterPage = () => {
+  const { menuCollapsed } = React.useContext(UiContext)
+
   return (
     <Router>
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider>
+        <Sider collapsedWidth={0} breakpoint="md" hidden={menuCollapsed}>
           <div className="logo" />
           <Menu
             theme="dark"
