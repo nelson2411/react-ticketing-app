@@ -1,15 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Row, Col, Typography, Divider, Button } from "antd"
 import { DownloadOutlined } from "@ant-design/icons"
 import { useHideMenu } from "../hooks/useHideMenu"
+import { SocketContext } from "../context/SocketContext"
 
 const { Title, Text } = Typography
 
 export const CrearTicket = () => {
   useHideMenu(true)
+  const { socket } = useContext(SocketContext)
+  const [ticket, setTicket] = React.useState(null)
 
   const nuevoTicket = () => {
-    console.log("horray, a ticket has been created")
+    socket.emit("solicitar-ticket", null, (ticket) => {
+      setTicket(ticket)
+    })
   }
 
   return (
@@ -30,13 +35,15 @@ export const CrearTicket = () => {
       </Row>
       <Divider />
       <Row>
-        <Col span={14} offset={6} align="center">
-          <Text>Su número</Text>
-          <br />
-          <Text style={{ fontSize: 55 }} type="success">
-            55
-          </Text>
-        </Col>
+        {ticket && (
+          <Col span={14} offset={6} align="center">
+            <Text>Su número</Text>
+            <br />
+            <Text style={{ fontSize: 55 }} type="success">
+              {ticket.number}
+            </Text>
+          </Col>
+        )}
       </Row>
     </>
   )

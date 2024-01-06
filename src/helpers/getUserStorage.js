@@ -1,6 +1,6 @@
 export const getUserStorage = () => {
   return {
-    agente: localStorage.getItem("agente") || null,
-    escritorio: localStorage.getItem("escritorio") || null,
+    agent: localStorage.getItem("agent") || null,
+    desktop: localStorage.getItem("desktop") || null,
   }
 }

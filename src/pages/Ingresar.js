@@ -25,8 +25,8 @@ export const Ingresar = () => {
 
   const onFinish = (values) => {
     console.log("Success:", values)
-    localStorage.setItem("agente", values.agente)
-    localStorage.setItem("escritorio", values.escritorio)
+    localStorage.setItem("agent", values.agent)
+    localStorage.setItem("desktop", values.desktop)
     history.push("/escritorio")
   }
   const onFinishFailed = (errorInfo) => {
@@ -53,7 +53,7 @@ export const Ingresar = () => {
       >
         <Form.Item
           label="Nombre del agente"
-          name="agente"
+          name="agent"
           rules={[{ required: true, message: "Por favor ingrese su usuario" }]}
         >
           <Input />
@@ -61,7 +61,7 @@ export const Ingresar = () => {
 
         <Form.Item
           label="Escritorio"
-          name="escritorio"
+          name="desktop"
           rules={[
             {
               required: true,
